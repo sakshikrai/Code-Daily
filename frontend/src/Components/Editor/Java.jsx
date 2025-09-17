@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import LangList from './LangList'
 // import voice from '../../assets/image.png'
-import axios from 'axios';
+// import axios from 'axios'; // This is not used, can be removed
 import { toast } from 'react-hot-toast';
 import copy_icon from '../../assets/copy_icon.gif';
 import download_icon from '../../assets/download_logo.png';
+
+// Step 1: Import the API_URL
+import API_URL from '../../api';
 
 
 function Java() {
@@ -20,12 +23,12 @@ function Java() {
     };
  
     try{
-      // const {data} = await axios.post("http://localhost:5000/rundart",payload)
-      const response = await fetch("http://localhost:5000/rundart",{
+      // Step 2: Update the fetch call to use the full production URL
+      const response = await fetch(`${API_URL}/rundart`,{
         method:'POST',
         headers:{
           "Content-Type":"application/json"
-          },  
+          }, 
           body : JSON.stringify(payload),
       })
       const data = await response.json()
@@ -39,10 +42,10 @@ function Java() {
         toast.remove();
         toast.error("An Error Occured");
       }
-     
+      
     }catch(err){
       toast.remove();
-      toast.error('Error in communication with the server.Please check is flutter sdk is installed');
+      toast.error('Error in communication with the server. Please check if flutter sdk is installed');
       setOutput("Error in communication with the server");
       console.log(`error is in dart.js .The error : ${err}`);
     }
@@ -76,42 +79,42 @@ function Java() {
   return ( 
     <>
       <div className="voiceContainer">
-            <div className="voiceBody wholeeditorBody">
-                <div className="leftLang">
-                    <LangList leftcolordart="white"/>
-                </div>
-                <div className="PlaygroundMain">
-                <div className='runHeaderJS'>
-                    <div className='jsleftheaderfile jsfile'>
-                      <mark><h2>index.dart</h2></mark>
-                      <div className='runbtn'>
+          <div className="voiceBody wholeeditorBody">
+              <div className="leftLang">
+                  <LangList leftcolordart="white"/>
+              </div>
+              <div className="PlaygroundMain">
+              <div className='runHeaderJS'>
+                  <div className='jsleftheaderfile jsfile'>
+                    <mark><h2>index.dart</h2></mark>
+                    <div className='runbtn'>
                       <button className='vbtn'>
                       <img className='voicebtn' onClick={copyContent} src={copy_icon} alt='voice'/>
                       </button>
                       <button className='vbtn'>
                       <img className='voicebtn' onClick={codeToFile} src={download_icon} alt='voice'/>
                       </button>
-                        <button className='btn' onClick={handleSubmit}>RUN</button>
-                      </div>
-                    </div>
-                    <div className='jsrightheaderfile jsfile'>
-                      <mark><p>OUTPUT</p></mark>
-                      <button className='clear' onClick={clear}>Clear</button>
+                      <button className='btn' onClick={handleSubmit}>RUN</button>
                     </div>
                   </div>
-                  <div className='jsplayground playground'>
-                    <div className='leftplayground snippet'>
-                      <textarea className='dartpython' name="dart" id="dart" value={code} onChange={(e)=>{setCode(e.target.value)}} placeholder='void main(){print("Hello codoPlayers");}'></textarea>
-                    </div>
-                    <h1 className="invisible">
-                      <mark>Output</mark>
-                    </h1>
-                    <div className='rightplayground snippet'>
-                      <p>{output}</p>
-                    </div>
+                  <div className='jsrightheaderfile jsfile'>
+                    <mark><p>OUTPUT</p></mark>
+                    <button className='clear' onClick={clear}>Clear</button>
                   </div>
                 </div>
-            </div>
+                <div className='jsplayground playground'>
+                  <div className='leftplayground snippet'>
+                    <textarea className='dartpython' name="dart" id="dart" value={code} onChange={(e)=>{setCode(e.target.value)}} placeholder='void main(){print("Hello codoPlayers");}'></textarea>
+                  </div>
+                  <h1 className="invisible">
+                    <mark>Output</mark>
+                  </h1>
+                  <div className='rightplayground snippet'>
+                    <p>{output}</p>
+                  </div>
+                </div>
+              </div>
+          </div>
         </div>
     </>
   )

@@ -5,6 +5,9 @@ import blog_svg from '../../assets/blobanimation.svg';
 import { toast } from 'react-hot-toast';
 import { UsedContext } from '../App';
 
+// Step 1: Import the API_URL
+import API_URL from '../../api';
+
 function Login() {
     const { dispatch } = useContext(UsedContext);
     const navigate = useNavigate();
@@ -15,9 +18,8 @@ function Login() {
     const loginUser = async (e) => {
         e.preventDefault();
 
-        // **IMPORTANT CHANGE HERE**
-        // Using a relative URL ("/login") to work with the "proxy" setting.
-        const res = await fetch('/login', {
+        // Step 2: Update the fetch call to use the full production URL
+        const res = await fetch(`${API_URL}/login`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -28,8 +30,6 @@ function Login() {
             })
         });
 
-        // **CRITICAL BUG FIX HERE**
-        // You must 'await' the res.json() call to get the data.
         const data = await res.json();
 
         if (res.status === 400) {

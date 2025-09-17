@@ -5,6 +5,9 @@ import copy_icon from '../../assets/copy_icon.gif';
 import download_icon from '../../assets/download_logo.png';
 import { toast } from 'react-hot-toast';
 
+// Step 1: Import the API_URL
+import API_URL from '../../api';
+
 
 function Python() {
 
@@ -20,8 +23,8 @@ function Python() {
 
     try{
 
-      // const {data} = await axios.post("http://localhost:5000/runpy",payload)
-      const response = await fetch("http://localhost:5000/runpy",{
+      // Step 2: Update the fetch call to use the full production URL
+      const response = await fetch(`${API_URL}/runpy`,{
         method:'POST',
         headers:{
           "Content-Type":"application/json"
@@ -75,45 +78,45 @@ function Python() {
   return (
     <> 
       <div className="voiceContainer">
-            <div className="voiceBody wholeeditorBody">
-                <div className="leftLang">
-                    <LangList leftcolorpy="white"/>
-                </div>
-                <div className="PlaygroundMain">
-                <div className='runHeaderJS'>
-                    <div className='jsleftheaderfile jsfile'>
-                      <mark><h2>index.py</h2></mark>
-                      <div className='runbtn'>
+          <div className="voiceBody wholeeditorBody">
+              <div className="leftLang">
+                  <LangList leftcolorpy="white"/>
+              </div>
+              <div className="PlaygroundMain">
+              <div className='runHeaderJS'>
+                  <div className='jsleftheaderfile jsfile'>
+                    <mark><h2>index.py</h2></mark>
+                    <div className='runbtn'>
                       <button className='vbtn'>
                       <img className='voicebtn' onClick={copyContent} src={copy_icon} alt='copy'/>
                       </button>
                       <button className='vbtn'>
                       <img className='voicebtn' onClick={codeToFile} src={download_icon} alt='download'/>
                       </button>
-                        <button className='btn' onClick={handleSubmit}>RUN</button>
-                      </div>
-                    </div>
-                    <div className='jsrightheaderfile jsfile'>
-                      <mark><p>OUTPUT</p></mark>
-                      <button className='clear' onClick={clear}>Clear</button>
+                      <button className='btn' onClick={handleSubmit}>RUN</button>
                     </div>
                   </div>
-                  <div className='jsplayground playground'>
-                    <div className='leftplayground snippet'>
-                    <textarea className='dartpython' name="python" id="python" value={code} onChange={(e)=>setCode(e.target.value)} placeholder='print("hello codoPlayers")'></textarea>
-                    </div>
-                    <h1 className="invisible">
-                      <mark>Output</mark>
-                    </h1>
-                    <div className='rightplayground snippet' id='consoleOutput' >
-                    <p>{output}</p>
-                    </div>
+                  <div className='jsrightheaderfile jsfile'>
+                    <mark><p>OUTPUT</p></mark>
+                    <button className='clear' onClick={clear}>Clear</button>
                   </div>
                 </div>
-            </div>
+                <div className='jsplayground playground'>
+                  <div className='leftplayground snippet'>
+                  <textarea className='dartpython' name="python" id="python" value={code} onChange={(e)=>setCode(e.target.value)} placeholder='print("hello codoPlayers")'></textarea>
+                  </div>
+                  <h1 className="invisible">
+                    <mark>Output</mark>
+                  </h1>
+                  <div className='rightplayground snippet' id='consoleOutput' >
+                  <p>{output}</p>
+                  </div>
+                </div>
+              </div>
+          </div>
         </div>
     </>
   )
 }
 
-export default Python
+export default Python;

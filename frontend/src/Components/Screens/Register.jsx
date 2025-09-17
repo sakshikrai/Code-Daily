@@ -4,6 +4,9 @@ import blog_svg from '../../assets/blobanimation.svg';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
+// Step 1: Import the API_URL you will create
+import API_URL from '../../api'; 
+
 function Register() {
     const navigate = useNavigate();
 
@@ -24,10 +27,8 @@ function Register() {
         e.preventDefault();
         const { username, email, password, cpassword, role } = user;
 
-        // **IMPORTANT CHANGE HERE**
-        // Using a relative URL ("/register") which works with the "proxy" setting
-        // in your frontend/package.json file. This is the standard way to avoid CORS errors.
-        const res = await fetch("/register", {
+        // Step 2: Update the fetch call to use the full production URL
+        const res = await fetch(`${API_URL}/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
