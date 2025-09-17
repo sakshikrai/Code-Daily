@@ -1,6 +1,6 @@
 # Code-Daily - Code Edior with extending features.
 
- ### **[Live Demo ](https://)**
+ ### **[Live Demo ](https://code-daily-frontend.onrender.com)**
     1. It is Basically a Code Editor Which can Execute Javascript, Python and Dart Code. 
 
     2 .It have Two Features:
@@ -12,8 +12,8 @@
 
  ## Preview 
 
- ### 1. *[Frontend Demo](https://)*
- ### 2. *[Backend Demo](https://)*
+ ### 1. *[Frontend Demo](https://code-daily-frontend.onrender.com/)*
+ ### 2. *[Backend Demo](https://code-daily-backend.onrender.com)*
   
   ## Requirement
 
@@ -21,7 +21,6 @@
     - Try to Run The Compiler in Latest Browsers like Chrome, Brave, Edge.
     - Voice to Text Feature in not supported in Mozrilla Firebox.
     - Due to Beginning Stage ,Server Responding Might takes some time. Please wait while login/Register. and if not respond.Try to Refresh and it will work Proper.👍
-    - For not the Dart Compiler is not support.Due to SDk Installation Plbm but soon it will be Live.
     - All the Best / Code Daily ,Learn Daily /
 
   ## Installation 
