@@ -7,13 +7,14 @@ FROM node:18-slim
 
 WORKDIR /usr/src/app
 
+
 COPY --from=dart_sdk /usr/lib/dart /usr/lib/dart
 
 
 ENV PATH="/usr/lib/dart/bin:${PATH}"
 
 
-RUN apt-get update && apt-get install -y python3
+RUN apt-get update && apt-get install -y python3 python-is-python3
 
 
 COPY package*.json ./
