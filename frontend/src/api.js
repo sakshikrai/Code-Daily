@@ -1,3 +1,3 @@
-const API_URL = 'https://code-daily-server.onrender.com'; 
+const API_URL = 'https://code-daily-backend.onrender.com'; 
 
 export default API_URL;
